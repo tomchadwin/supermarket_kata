@@ -1,0 +1,23 @@
+{
+  "name": "supermarket_kata",
+  "version": "1.0.0",
+  "description": "Supermarket pricing calculator",
+  "main": "src/index.js",
+  "bin": {
+    "@tomchadwin/cart": "bin/cart",
+    "cart": "bin/cart"
+  },
+  "devDependencies": {
+    "vite": "^3.2.3"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "author": "Tom Chadwin",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^5.0.2",
+    "esm": "^3.2.25"
+  }
+}
