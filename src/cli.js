@@ -94,7 +94,7 @@ function list_cart_contents() {
 
 function sum_cart() {
   let cart_total = cart.reduce(
-  (accumulator, cart_item) => accumulator + Number(item_price(cart_item).price), 0);
+  (accumulator, cart_item) => accumulator + item_price(cart_item).price, 0);
   return cart_total;
 }
 
@@ -113,6 +113,10 @@ function item_price(cart_item) {
 }
 
 function pounds_and_pence(price) {
-  let rounded_price = price.toFixed(2)
+  // could possibly use Intl.NumberFormat, but this way applies rounding 
+  // to the penny for each item, which is probably the approach taken 
+  // by shops
+  
+  let rounded_price = parseFloat(price.toFixed(2)); 
   return rounded_price;
 }
