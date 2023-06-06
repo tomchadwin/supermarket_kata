@@ -1,4 +1,5 @@
 let cart = [];
+let cart_totals = {};
 
 class category {
   constructor(props) {
@@ -16,22 +17,32 @@ class product_item {
   }
 };
 
+class deal {
+  constructor(props) {
+    this.id = props.id;
+    this.name = props.name;
+    this.products = props.products;
+    this.quantity = props.quantity;
+    this.discount = props.discount;
+  }
+}
+
 let beans = new product_item({
   id: 1, 
   name: 'Baked beans', 
-  price: .99,
+  price: 0.99,
   unit: 'item'
 });
 let cola = new product_item({
   id: 2,
   name: 'Can of cola', 
-  price: .75,
+  price: 0.70,
   unit: 'item'
 });
 let onions = new product_item({
   id: 3,
   name: 'Onions', 
-  price: .49,
+  price: 0.49,
   unit: 'kg'
 });
 let red_rowan = new product_item({
@@ -59,10 +70,27 @@ let beers = new category({
   product_items : [red_rowan, reiver, stell]
 });
 
+let deals = [
+  new deal({
+    id: 1,
+    name: 'Three tins of beans for the price of two', 
+    products: [beans],
+    quantity: 3,
+    discount: beans.price
+  }),
+  new deal({
+    id: 2,
+    name: 'Two cans of coca-cola for £1', 
+    products: [cola],
+    quantity: 2,
+    discount: 0.40
+  })
+];
 
 cart.push(
  {'product': beans, 'quantity': 1},
  {'product': cola, 'quantity': 1},
+ {'product': beans, 'quantity': 1},
  {'product': onions, 'quantity': 0.75}
 );
 
@@ -79,15 +107,33 @@ function getArgs(args) {
 
 function checkout() {
   list_cart_contents();
-  console.log('TOTAL:', sum_cart());
+  console.log('Sub-total:', sum_cart());
+  calculate_discounts();
 }
 
 function list_cart_contents() {
   for (const cart_item of cart) {
+    if (Object.hasOwn(cart_totals, cart_item.product.name)) {
+      cart_totals[cart_item.product.name] = cart_totals[cart_item.product.name] + cart_item.quantity;
+    } else {
+      cart_totals[cart_item.product.name] = cart_item.quantity;      
+    }
     let item_price_details = item_price(cart_item);
     console.log(cart_item.product.name, item_price_details.price);
     if (cart_item.product.unit != 'item') {
       console.log(item_price_details.quantity_message);
+    }
+  }
+  console.log(cart_totals);
+}
+
+function calculate_discounts() {
+  for (const deal of deals) {
+    for (const cart_item of cart) {
+//      console.log(deal.products[0]);
+      // if (cart_item.product instanceof deal.products[0].prototype) {
+        
+      // }
     }
   }
 }
