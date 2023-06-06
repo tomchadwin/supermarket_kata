@@ -81,7 +81,8 @@ cart.push(
  {'product': reiver, 'quantity': 1},
  {'product': red_rowan, 'quantity': 1},
  {'product': onions, 'quantity': 0.75}
-);```
+);
+```
 
 | Property | Details |
 |----------|---------|
