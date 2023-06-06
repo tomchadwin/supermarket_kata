@@ -17,7 +17,8 @@ let beans = new product_item({
   unit: 'item'
 });
 ```
-
+| Property | Details |
+|----------|---------|
 | id | Unique identifier (set this manually - not currently used) |
 | name | Human-readable product name |
 | price | Numeric product price |
