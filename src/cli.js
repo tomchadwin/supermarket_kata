@@ -91,6 +91,7 @@ cart.push(
  {'product': beans, 'quantity': 1},
  {'product': cola, 'quantity': 1},
  {'product': beans, 'quantity': 1},
+ {'product': beans, 'quantity': 1},
  {'product': onions, 'quantity': 0.75}
 );
 
@@ -124,18 +125,20 @@ function list_cart_contents() {
       console.log(item_price_details.quantity_message);
     }
   }
-  console.log(cart_totals);
 }
 
 function calculate_discounts() {
   for (const deal of deals) {
-    for (const cart_item of cart) {
-//      console.log(deal.products[0]);
-      // if (cart_item.product instanceof deal.products[0].prototype) {
-        
-      // }
+    if (Object.hasOwn(cart_totals, deal.products[0].name)) {
+      if (cart_totals[deal.products[0].name] >= deal.quantity) {
+        apply_discount(deal, cart_totals[deal.products[0].name]);
+      }
     }
   }
+}
+
+function apply_discount(deal, quantity) {
+  console.log(deal, quantity);
 }
 
 function sum_cart() {
@@ -159,7 +162,7 @@ function item_price(cart_item) {
 }
 
 function pounds_and_pence(price) {
-  // could possibly use Intl.NumberFormat, but this way applies rounding 
+  // Could possibly use Intl.NumberFormat, but this way applies rounding 
   // to the penny for each item, which is probably the approach taken 
   // by shops
   
