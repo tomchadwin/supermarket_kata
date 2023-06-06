@@ -92,6 +92,13 @@ let deals = [
     products: [cola],
     quantity: 2,
     discount: 0.40
+  }),
+  new deal({
+    id: 3,
+    name: 'Any 3 ales from the First and Last Brewery for £6', 
+    products: [red_rowan, reiver, stell],
+    quantity: 3,
+    discount: 2.97
   })
 ];
 
@@ -103,6 +110,9 @@ cart.push(
  {'product': beans, 'quantity': 1},
  {'product': beans, 'quantity': 1},
  {'product': beans, 'quantity': 1},
+ {'product': stell, 'quantity': 1},
+ {'product': reiver, 'quantity': 1},
+ {'product': red_rowan, 'quantity': 1},
  {'product': onions, 'quantity': 0.75}
 );
 
@@ -141,10 +151,14 @@ function list_cart_contents() {
 
 function calculate_discounts() {
   for (const deal of deals) {
-    if (Object.hasOwn(cart_totals, deal.products[0].name)) {
-      if (cart_totals[deal.products[0].name] >= deal.quantity) {
-        apply_discount(deal, cart_totals[deal.products[0].name]);
+    let item_total = 0;
+    for (let deal_product of deal.products) {
+      if (Object.hasOwn(cart_totals, deal_product.name)) {
+        item_total = item_total + cart_totals[deal_product.name]
       }
+    }
+    if (item_total >= deal.quantity) {
+      apply_discount(deal, item_total);
     }
   }
   console.log('Total savings: ', 0 - total_savings);
