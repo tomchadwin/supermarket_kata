@@ -88,3 +88,33 @@ cart.push(
 |----------|---------|
 | product | Product object name |
 | quantity | Quantity in the product's units |
+
+## Discussion
+
+I decided to try to write this application in a very Javascript-friendly fashion, 
+and so heaby use is made of objects. Clarity of the code was prioritized over 
+performance, and I therefore haven't done any benchmarking.
+
+This code implements the example pricing methods and discounts mentioned in the brief, 
+but does so *extremely* closely. As a result, there are some obvious limitations in the 
+logic which would need to be corrected in the future:
+
+- A discount applied to a group of products will fail if those products differ in price - 
+try adding `beans` to the beer `discount`. To fix, more discount models are required, 
+perhaps which replace the qualifying items subtotal with a fixed price, rather than a 
+discount. This would then obviously require logic to determine which qualifying product(s) 
+were cheapest, so that the most common "Get the cheapest one FREE!" approach could be 
+implemented.
+
+- I still feel as though I don't have a good enough handle on floating-point maths in JS, 
+and would want to read up in order to determine that rounding was occurring in a way 
+suitable to this domain.
+
+## Possible enhancements
+
+The code could be extended to add support for:
+
+- multiple currencies
+- common product flags (eg age-restricted goods)
+- product flags I've never seen implemented but which I wish were (eg allergy/dietary 
+preference info, security tagging)
