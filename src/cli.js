@@ -166,6 +166,9 @@ function calculate_discounts() {
 }
 
 function apply_discount(deal, quantity) {
+  if (total_savings == 0) {
+    console.log('Savings');
+  }
   let calculated_discount = Math.floor(quantity / deal.quantity) * deal.discount;
   console.log(deal.name, 0 - calculated_discount);
   total_savings = total_savings + calculated_discount;
