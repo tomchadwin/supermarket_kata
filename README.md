@@ -92,7 +92,7 @@ cart.push(
 ## Discussion
 
 I decided to try to write this application in a very Javascript-friendly fashion, 
-and so heaby use is made of objects. Clarity of the code was prioritized over 
+and so heavy use is made of objects. Clarity of the code was prioritized over 
 performance, and I therefore haven't done any benchmarking.
 
 This code implements the example pricing methods and discounts mentioned in the brief, 
