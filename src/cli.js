@@ -1,5 +1,13 @@
+const gbp = new Intl.NumberFormat('en-GB', {
+  style: 'decimal',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+
 let cart = [];
 let cart_totals = {};
+let subtotal = 0;
+let total_savings = 0;
 
 class category {
   constructor(props) {
@@ -92,6 +100,9 @@ cart.push(
  {'product': cola, 'quantity': 1},
  {'product': beans, 'quantity': 1},
  {'product': beans, 'quantity': 1},
+ {'product': beans, 'quantity': 1},
+ {'product': beans, 'quantity': 1},
+ {'product': beans, 'quantity': 1},
  {'product': onions, 'quantity': 0.75}
 );
 
@@ -108,7 +119,8 @@ function getArgs(args) {
 
 function checkout() {
   list_cart_contents();
-  console.log('Sub-total:', sum_cart());
+  subtotal = sum_cart();
+  console.log('Sub-total:', gbp.format(subtotal));
   calculate_discounts();
 }
 
@@ -120,7 +132,7 @@ function list_cart_contents() {
       cart_totals[cart_item.product.name] = cart_item.quantity;      
     }
     let item_price_details = item_price(cart_item);
-    console.log(cart_item.product.name, item_price_details.price);
+    console.log(cart_item.product.name, gbp.format(item_price_details.price));
     if (cart_item.product.unit != 'item') {
       console.log(item_price_details.quantity_message);
     }
@@ -135,10 +147,14 @@ function calculate_discounts() {
       }
     }
   }
+  console.log('Total savings: ', 0 - total_savings);
+  console.log('Total to Pay: ', gbp.format(subtotal - total_savings));
 }
 
 function apply_discount(deal, quantity) {
-  console.log(deal, quantity);
+  let calculated_discount = Math.floor(quantity / deal.quantity) * deal.discount;
+  console.log(deal.name, 0 - calculated_discount);
+  total_savings = total_savings + calculated_discount;
 }
 
 function sum_cart() {
