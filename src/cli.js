@@ -7,60 +7,64 @@ class category {
   }
 }
 
-class item {
+class product_item {
   constructor(props) {
     this.id = props.id;
     this.name = props.name;
     this.price = props.price;
-    this.model = props.model;
+    this.unit = props.unit;
   }
 };
 
-let beans = new item({
+let beans = new product_item({
   id: 1, 
   name: 'Baked beans', 
   price: .99,
-  model: 'quantity'
+  unit: 'item'
 });
-let cola = new item({
+let cola = new product_item({
   id: 2,
   name: 'Can of cola', 
   price: .75,
-  model: 'quantity'
+  unit: 'item'
 });
-let onions = new item({
+let onions = new product_item({
   id: 3,
   name: 'Onions', 
   price: .49,
-  model: 'kilo'
+  unit: 'kg'
 });
-let red_rowan = new item({
+let red_rowan = new product_item({
   id: 4,
   name: 'Red Rowan ale', 
   price: 2.99,
-  model: 'item'
+  unit: 'item'
 });
-let reiver = new item({
+let reiver = new product_item({
   id: 5,
   name: 'Reiver bitter', 
   price: 2.99,
-  model: 'item'
+  unit: 'item'
 });
-let stell = new item({
+let stell = new product_item({
   id: 6,
   name: 'Stell stout', 
   price: 2.99,
-  model: 'item'
+  unit: 'item'
 });
 
 let beers = new category({
   id: 1,
   description: 'Beer',
-  items : [red_rowan, reiver, stell]
+  product_items : [red_rowan, reiver, stell]
 });
 
 
-cart.push([beans, 1], [cola, 1], [onions, 0.75]);
+cart.push(
+ {'product': beans, 'quantity': 1},
+ {'product': cola, 'quantity': 1},
+ {'product': onions, 'quantity': 0.75}
+);
 
 
 export function cli(args) {
@@ -74,11 +78,41 @@ function getArgs(args) {
 }
 
 function checkout() {
-  for (const product of cart) {
-    console.log(product[0].name, pounds_and_pence(product[0].price * product[1]));
+  list_cart_contents();
+  console.log('TOTAL:', sum_cart());
+}
+
+function list_cart_contents() {
+  for (const cart_item of cart) {
+    let item_price_details = item_price(cart_item);
+    console.log(cart_item.product.name, item_price_details.price);
+    if (cart_item.product.unit != 'item') {
+      console.log(item_price_details.quantity_message);
+    }
   }
 }
 
-function pounds_and_pence(cost) {
-  return cost.toFixed(2);
+function sum_cart() {
+  let cart_total = cart.reduce(
+  (accumulator, cart_item) => accumulator + Number(item_price(cart_item).price), 0);
+  return cart_total;
+}
+
+function item_price(cart_item) {
+  let unit_price = cart_item.product.price;
+  let quantity = cart_item.quantity;
+  let unit = cart_item.product.unit;
+
+  let price = pounds_and_pence(unit_price * quantity);
+
+  let quantity_message = '';
+  if (unit != 'item') {
+    quantity_message = `${quantity}${unit} @ £${unit_price}/${unit}`;
+  }
+  return {'price': price, 'quantity_message': quantity_message};
+}
+
+function pounds_and_pence(price) {
+  let rounded_price = price.toFixed(2)
+  return rounded_price;
 }
