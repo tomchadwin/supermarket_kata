@@ -1,5 +1,12 @@
 let cart = [];
 
+class category {
+  constructor(props) {
+    this.id = props.id;
+    this.description = props.description;
+  }
+}
+
 class item {
   constructor(props) {
     this.id = props.id;
@@ -46,13 +53,6 @@ let stell = new item({
   model: 'item'
 });
 
-class category {
-  constructor(props) {
-    this.id = props.id;
-    this.description = props.description;
-  }
-}
-
 let beers = new category({
   id: 1,
   description: 'Beer',
@@ -60,8 +60,11 @@ let beers = new category({
 });
 
 
+cart.push([beans, 1], [cola, 1], [onions, 0.75]);
+
+
 export function cli(args) {
-  console.log(getArgs(args));
+  let cmd = getArgs(args);
   checkout();
 }
 
@@ -71,6 +74,11 @@ function getArgs(args) {
 }
 
 function checkout() {
+  for (const product of cart) {
+    console.log(product[0].name, pounds_and_pence(product[0].price * product[1]));
+  }
+}
 
- console.log(beans.name);
+function pounds_and_pence(cost) {
+  return cost.toFixed(2);
 }
