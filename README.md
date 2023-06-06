@@ -1,12 +1,15 @@
 # supermarket_kata
 Implementation of http://codekata.com/kata/kata01-supermarket-pricing/ in NodeJS via CLI
 
-## Details
+## Installation
 Clone repository and install with `npm i`.
 
+## Usage
 Call checkout with `/bin/cart`.
 
-## Changing products
+## Configuration
+
+###Changing products
 Edit `/src/cli.js`, and add products to the catalogue as follows:
 
 ```
@@ -25,7 +28,7 @@ let beans = new product_item({
 | price | Numeric product price |
 | unit | Either the units of measure (eg 'kg', 'ml') or 'item' if sold individually |
 
-## Changing deals
+### Changing deals
 Edit `/src/cli.js`, and add `deal`s to `deals[]` as follows:
 
 ```
@@ -62,7 +65,7 @@ let deals = [
 | quantity | Number of products which triggers the deal |
 | discount | Discount subtracted when deal is applied |
 
-## Changing cart contents
+### Changing cart contents
 Edit `/src/cli.js`, and add items to the cart as follows:
 
 ```
