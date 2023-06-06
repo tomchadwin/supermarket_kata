@@ -9,7 +9,7 @@ Call checkout with `/bin/cart`.
 
 ## Configuration
 
-###Changing products
+### Changing products
 Edit `/src/cli.js`, and add products to the catalogue as follows:
 
 ```
