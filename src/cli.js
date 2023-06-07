@@ -66,7 +66,7 @@ export function cli(args) {
   let reiver = new product_item({
     id: 5,
     name: 'Reiver bitter', 
-    price: 2.98,
+    price: 2.99,
     unit: 'item'
   });
   let stell = new product_item({
