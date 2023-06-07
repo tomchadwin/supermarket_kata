@@ -3,6 +3,7 @@ let total_savings = 0;
 
 export function cli(args) {
 
+  // Ensure correct GBP formatting for final output
   const gbp = new Intl.NumberFormat('en-GB', {
     style: 'decimal',
     minimumFractionDigits: 2,
@@ -13,6 +14,7 @@ export function cli(args) {
   let cart_totals = {};
   let subtotal = 0;
 
+  // For future use
   class category {
     constructor(props) {
       this.id = props.id;
@@ -106,6 +108,8 @@ export function cli(args) {
     })
   ];
 
+  // If the cart is empty, add some sample items
+  // ALTER THESE ITEMS HERE TO TEST DIFFERENT BEHAVIOURS
   if (!cart.length) {
     cart.push(
      {'product': beans, 'quantity': 1},
@@ -128,10 +132,12 @@ export function cli(args) {
 }
 
 
+// Retrieve arguments from CLI invocation
 function getArgs(args) {
   return args.slice(2);
 }
 
+// Main function
 function checkout(cart, cart_totals, gbp, subtotal, deals) {
   let listed_contents = list_cart_contents(cart, cart_totals, gbp);
   subtotal = sum_cart(cart);
@@ -140,6 +146,7 @@ function checkout(cart, cart_totals, gbp, subtotal, deals) {
   return `${listed_contents}\n${sub_total}\n${calculated_discounts}`;
 }
 
+// List products, quantities and calculated prices *before deals/discounts*
 function list_cart_contents(cart, cart_totals, gbp) {
   let formatted_details = ''
   for (const cart_item of cart) {
@@ -157,6 +164,7 @@ function list_cart_contents(cart, cart_totals, gbp) {
   return formatted_details;
 }
 
+// Determine which discounts apply to cart contents
 function calculate_discounts(deals, cart_totals, gbp, subtotal) {
   let applied_discount_output = '';
   for (const deal of deals) {
@@ -175,6 +183,7 @@ function calculate_discounts(deals, cart_totals, gbp, subtotal) {
   return `${applied_discount_output}\n${total_savings_output}\n${total_to_pay}`;
 }
 
+// Apply discounts identified
 function apply_discount(deal, quantity) {
   let applied_discount = '';
   if (total_savings == 0) {
@@ -186,12 +195,14 @@ function apply_discount(deal, quantity) {
   return applied_discount;
 }
 
+// Get total price of all items in cart *before deals/discounts*
 function sum_cart(cart) {
   let cart_total = cart.reduce(
   (accumulator, cart_item) => accumulator + item_price(cart_item).price, 0);
   return cart_total;
 }
 
+// Calculate item price from product price and quantity
 function item_price(cart_item) {
   let unit_price = cart_item.product.price;
   let quantity = cart_item.quantity;
@@ -206,6 +217,7 @@ function item_price(cart_item) {
   return {'price': price, 'quantity_message': quantity_message};
 }
 
+// Rounds to two decimal places at each item/discount, since that is expected
 function pounds_and_pence(price) {
   // Could possibly use Intl.NumberFormat, but this way applies rounding 
   // to the penny for each item, which is probably the approach taken 
