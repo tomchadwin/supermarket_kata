@@ -4,7 +4,7 @@ describe('supermarket_kata', () => {
   const expected = expect.any(Function);
 
   it("returns correct output for sample data", () => {
-    expect(cart.cli()).toEqual(`Baked beans 0.99
+    expect(cart.create_cart()).toEqual(`Baked beans 0.99
 Can of cola 0.70
 Baked beans 0.99
 Baked beans 0.99
