@@ -3,7 +3,7 @@ const cart = require('./src/cli');
 describe('supermarket_kata', () => {
   const expected = expect.any(Function);
 
-  it("should run", () => {
+  it("returns correct output for sample data", () => {
     expect(cart.cli()).toEqual(`Baked beans 0.99
 Can of cola 0.70
 Baked beans 0.99
