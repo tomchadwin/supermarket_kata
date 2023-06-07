@@ -121,3 +121,8 @@ The code could be extended to add support for:
 - common product flags (eg age-restricted goods)
 - product flags I've never seen implemented but which I wish were (eg allergy/dietary 
 preference info, security tagging)
+
+## Tests
+
+The most rudimentary test framework is in place using Jest. However, only a single 
+reference test is currently present, and unit tests should be built.
