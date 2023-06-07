@@ -8,8 +8,8 @@ Clone repository and install with `npm i`.
 Call checkout with `cd bin && ./cart`:
 
 ```
-tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata$ cd bin/
-tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata/bin$ ./cart
+$ cd bin/
+$ ./cart
 Baked beans 0.99
 Can of cola 0.70
 Baked beans 0.99
@@ -155,14 +155,14 @@ Tests are run automatically via a Github workflow on all commits to the reposito
 master branch. Run manually from your local cloned repo root via `npm test`:
 
 ```
-tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata$ npm test
+$ npm test
 
 > supermarket_kata@1.0.0 test
 > jest --no-cache ./*
 
  PASS  ./supermarket_kata.spec.js
   supermarket_kata
-    ✓ should run (17 ms)
+    ✓ returns correct output for sample data (18 ms)
 
   console.log
     Baked beans 0.99
@@ -190,6 +190,6 @@ tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata$ npm test
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        1.283 s
-Ran all test suites matching /.\/LICENSE|.\/README.md|.\/babel.config.js|.\/bin|.\/index.js|.\/node_modules|.\/package-lock.json|.\/package.json|.\/src|.\/supermarket_kata.spec.js/i.
+Time:        0.648 s
+Ran all test suites matching /.\/LICENSE|.\/README.md|.\/babel.config.js|.\/bin|.\/index.js|.\/node_modules|.\/package-lock.json|.\/package.json|.\/src|.\/supermarket_kata.spec.js/i
 ```
