@@ -95,6 +95,9 @@ I decided to try to write this application in a very Javascript-friendly fashion
 and so heavy use is made of objects. Clarity of the code was prioritized over 
 performance, and I therefore haven't done any benchmarking.
 
+I've tried to maintain healthy separation of concerns, with products, cart, and discounts 
+all independently enumerated. 
+
 This code implements the example pricing methods and discounts mentioned in the brief, 
 but does so *extremely* closely. As a result, there are some obvious limitations in the 
 logic which would need to be corrected in the future:
