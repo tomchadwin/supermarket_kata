@@ -5,7 +5,7 @@ Implementation of http://codekata.com/kata/kata01-supermarket-pricing/ in NodeJS
 Clone repository and install with `npm i`.
 
 ## Usage
-Call checkout with `/bin/cart`.
+Call checkout with `cd bin && ./cart`.
 
 ## Configuration
 
@@ -126,3 +126,6 @@ preference info, security tagging)
 
 The most rudimentary test framework is in place using Jest. However, only a single 
 reference test is currently present, and unit tests should be built.
+
+Tests are run automatically via a Github workflow on all commits to the repository's 
+master branch. Run manually from your local cloned repo root via `npm test`.
