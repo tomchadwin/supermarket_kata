@@ -5,7 +5,31 @@ Implementation of http://codekata.com/kata/kata01-supermarket-pricing/ in NodeJS
 Clone repository and install with `npm i`.
 
 ## Usage
-Call checkout with `cd bin && ./cart`.
+Call checkout with `cd bin && ./cart`:
+
+```
+tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata$ cd bin/
+tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata/bin$ ./cart
+Baked beans 0.99
+Can of cola 0.70
+Baked beans 0.99
+Baked beans 0.99
+Baked beans 0.99
+Baked beans 0.99
+Baked beans 0.99
+Stell stout 2.99
+Reiver bitter 2.99
+Red Rowan ale 2.99
+Onions 0.37
+0.75kg @ £0.49/kg
+Sub-total: 15.98
+Savings
+Three tins of beans for the price of two -1.98
+Any 3 ales from the First and Last Brewery for £6 -2.97
+
+Total savings: -4.95
+Total to Pay: 11.03
+```
 
 ## Configuration
 
@@ -128,4 +152,44 @@ The most rudimentary test framework is in place using Jest. However, only a sing
 reference test is currently present, and unit tests should be built.
 
 Tests are run automatically via a Github workflow on all commits to the repository's 
-master branch. Run manually from your local cloned repo root via `npm test`.
+master branch. Run manually from your local cloned repo root via `npm test`:
+
+```
+tom-admin@LAPTOP-TUASS1IO:~/personal/supermarket_kata$ npm test
+
+> supermarket_kata@1.0.0 test
+> jest --no-cache ./*
+
+ PASS  ./supermarket_kata.spec.js
+  supermarket_kata
+    ✓ should run (17 ms)
+
+  console.log
+    Baked beans 0.99
+    Can of cola 0.70
+    Baked beans 0.99
+    Baked beans 0.99
+    Baked beans 0.99
+    Baked beans 0.99
+    Baked beans 0.99
+    Stell stout 2.99
+    Reiver bitter 2.99
+    Red Rowan ale 2.99
+    Onions 0.37
+    0.75kg @ £0.49/kg
+    Sub-total: 15.98
+    Savings
+    Three tins of beans for the price of two -1.98
+    Any 3 ales from the First and Last Brewery for £6 -2.97
+
+    Total savings: -4.95
+    Total to Pay: 11.03
+
+      at Object.cli (src/cli.js:130:11)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.283 s
+Ran all test suites matching /.\/LICENSE|.\/README.md|.\/babel.config.js|.\/bin|.\/index.js|.\/node_modules|.\/package-lock.json|.\/package.json|.\/src|.\/supermarket_kata.spec.js/i.
+```
