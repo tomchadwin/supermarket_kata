@@ -34,7 +34,7 @@ Total to Pay: 11.03
 ## Configuration
 
 ### Changing products
-Edit `/src/cli.js`, and add products to the catalogue as follows:
+Edit `/src/example.js`, and add products to the catalogue as follows:
 
 ```
 let beans = new product_item({
@@ -53,7 +53,7 @@ let beans = new product_item({
 | unit | Either the units of measure (eg 'kg', 'ml') or 'item' if sold individually |
 
 ### Changing deals
-Edit `/src/cli.js`, and add `deal`s to `deals[]` as follows:
+Edit `/src/example.js`, and add `deal`s to `deals[]` as follows:
 
 ```
 let deals = [
@@ -90,7 +90,7 @@ let deals = [
 | discount | Discount subtracted when deal is applied |
 
 ### Changing cart contents
-Edit `/src/cli.js`, and add items to the cart as follows:
+Edit `/src/example.js`, and add items to the cart as follows:
 
 ```
 cart.push(
@@ -162,7 +162,7 @@ $ npm test
 
  PASS  ./supermarket_kata.spec.js
   supermarket_kata
-    ✓ returns correct output for sample data (18 ms)
+    ✓ returns correct output for sample data (32 ms)
 
   console.log
     Baked beans 0.99
@@ -185,11 +185,11 @@ $ npm test
     Total savings: -4.95
     Total to Pay: 11.03
 
-      at Object.cli (src/cli.js:130:11)
+      at cart.checkout (src/cart.js:45:13)
 
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        0.648 s
+Time:        1.213 s
 Ran all test suites matching /.\/LICENSE|.\/README.md|.\/babel.config.js|.\/bin|.\/index.js|.\/node_modules|.\/package-lock.json|.\/package.json|.\/src|.\/supermarket_kata.spec.js/i
 ```
