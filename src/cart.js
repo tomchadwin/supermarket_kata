@@ -26,13 +26,13 @@ export class category {
 }
 
 export class cart {
-  constructor(deals) {
+  constructor(props) {
     this.contents = [];
     this.totals = {};
     this.subtotal = 0;
     this.total_savings = 0;
     
-    this.deals = deals;
+    this.deals = props.deals;
   }
   
   checkout() {
