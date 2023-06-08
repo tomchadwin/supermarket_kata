@@ -37,7 +37,7 @@ Total to Pay: 11.03
 Edit `/src/example.js`, and add products to the catalogue as follows:
 
 ```
-let beans = new product_item({
+let beans = new item({
   id: 1, 
   name: 'Baked beans', 
   price: 0.99,
