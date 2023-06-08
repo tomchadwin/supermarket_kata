@@ -1,62 +1,36 @@
-import { cart } from './cart.js';
+import { item, category, deal, cart } from './cart.js';
 
-class deal {
-  constructor(props) {
-    this.id = props.id;
-    this.name = props.name;
-    this.products = props.products;
-    this.quantity = props.quantity;
-    this.discount = props.discount;
-  }
-}
-
-class product_item {
-  constructor(props) {
-    this.id = props.id;
-    this.name = props.name;
-    this.price = props.price;
-    this.unit = props.unit;
-  }
-};
-
-class category {
-  constructor(props) {
-    this.id = props.id;
-    this.description = props.description;
-  }
-}
-
-let beans = new product_item({
+let beans = new item({
   id: 1, 
   name: 'Baked beans', 
   price: 0.99,
   unit: 'item'
 });
-let cola = new product_item({
+let cola = new item({
   id: 2,
   name: 'Can of cola', 
   price: 0.70,
   unit: 'item'
 });
-let onions = new product_item({
+let onions = new item({
   id: 3,
   name: 'Onions', 
   price: 0.49,
   unit: 'kg'
 });
-let red_rowan = new product_item({
+let red_rowan = new item({
   id: 4,
   name: 'Red Rowan ale', 
   price: 2.99,
   unit: 'item'
 });
-let reiver = new product_item({
+let reiver = new item({
   id: 5,
   name: 'Reiver bitter', 
   price: 2.99,
   unit: 'item'
 });
-let stell = new product_item({
+let stell = new item({
   id: 6,
   name: 'Stell stout', 
   price: 2.99,

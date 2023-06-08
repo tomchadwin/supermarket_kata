@@ -8,7 +8,7 @@ export class deal {
   }
 }
 
-export class product_item {
+export class item {
   constructor(props) {
     this.id = props.id;
     this.name = props.name;
