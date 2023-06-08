@@ -127,7 +127,7 @@ but does so *extremely* closely. As a result, there are some obvious limitations
 logic which would need to be corrected in the future:
 
 - A discount applied to a group of products will fail if those products differ in price - 
-try adding `beans` to the beer `discount`. To fix, more discount models are required, 
+try adding `beans` to the beer `deal`. To fix, more deal models are required, 
 perhaps which replace the qualifying items subtotal with a fixed price, rather than a 
 discount. This would then obviously require logic to determine which qualifying product(s) 
 were cheapest, so that the most common "Get the cheapest one FREE!" approach could be 
