@@ -1,4 +1,4 @@
-const cart = require('./src/cli');
+const cart = require('./src/example');
 
 describe('supermarket_kata', () => {
   const expected = expect.any(Function);

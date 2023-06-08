@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 require = require('esm')(module /*, options*/);
-require('../src/cli').create_cart(process.argv);
+require('../src/example').create_cart(process.argv);
