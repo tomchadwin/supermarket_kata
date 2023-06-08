@@ -145,6 +145,9 @@ The code could be extended to add support for:
 - common product flags (eg age-restricted goods)
 - product flags I've never seen implemented but which I wish were (eg allergy/dietary 
 preference info, security tagging)
+- lint the code (including in tests/CI)
+- document properly via JSDoc
+- explicitly differentiate between public and private class methods
 
 ## Tests
 
