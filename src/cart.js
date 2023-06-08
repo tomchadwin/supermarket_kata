@@ -41,79 +41,81 @@ export class cart {
     let sub_total = `Sub-total: ${this.gbp.format(this.subtotal)}`;
     let calculated_discounts = this.calculate_discounts();
     let checkout_result = `${listed_contents}\n${sub_total}\n${calculated_discounts}`;
+
     console.log(checkout_result);
     return checkout_result;
   }
 
   list_cart_contents() {
-    this.formatted_details = ''
-    for (const cart_item of this.contents) {
-      if (Object.hasOwn(this.totals, cart_item.product.name)) {
-        this.totals[cart_item.product.name] = this.totals[cart_item.product.name] + cart_item.quantity;
+    let contents = ''
+    for (const item of this.contents) {
+      if (Object.hasOwn(this.totals, item.product.name)) {
+        this.totals[item.product.name] = this.totals[item.product.name] + item.quantity;
       } else {
-        this.totals[cart_item.product.name] = cart_item.quantity;      
+        this.totals[item.product.name] = item.quantity;      
       }
-      let item_price_details = this.item_price(cart_item);
-      this.formatted_details = this.formatted_details + `${cart_item.product.name} ${this.gbp.format(item_price_details.price)}\n`;
-      if (cart_item.product.unit != 'item') {
-        this.formatted_details = this.formatted_details + item_price_details.quantity_message;
+      let item_price = this.item_price(item);
+      let price = this.gbp.format(item_price.price);
+      contents = contents + `${item.product.name} ${price}\n`;
+      if (item.product.unit != 'item') {
+        contents = contents + item_price.quantity_message;
       }
     }
-    return this.formatted_details;
+    return contents;
   }
 
   calculate_discounts() {
-    let applied_discount_output = '';
+    let discount = '';
     for (const deal of this.deals) {
-      let item_total = 0;
-      for (let deal_product of deal.products) {
-        if (Object.hasOwn(this.totals, deal_product.name)) {
-          item_total = item_total + this.totals[deal_product.name]
+      let total = 0;
+      for (let product of deal.products) {
+        if (Object.hasOwn(this.totals, product.name)) {
+          total = total + this.totals[product.name]
         }
       }
-      if (item_total >= deal.quantity) {
-        applied_discount_output = applied_discount_output + this.apply_discount(deal, item_total);
+      if (total >= deal.quantity) {
+        discount = discount + this.apply_discount(deal, total);
       }
     }
-    let total_savings_output = `Total savings: ${0 - this.total_savings}`;
+    let savings = `Total savings: ${0 - this.total_savings}`;
     let total_to_pay = `Total to Pay: ${this.gbp.format(this.subtotal - this.total_savings)}`;
-    return `${applied_discount_output}\n${total_savings_output}\n${total_to_pay}`;
+    return `${discount}\n${savings}\n${total_to_pay}`;
   }
   
   // List products, quantities and calculated prices *before deals/discounts*
   // Determine which discounts apply to cart contents
   // Apply discounts identified
   apply_discount(deal, quantity) {
-    let applied_discount = '';
+    let output = '';
     if (this.total_savings == 0) {
-      applied_discount = 'Savings\n';
+      output = 'Savings\n';
     }
-    let calculated_discount = Math.floor(quantity / deal.quantity) * deal.discount;
-    applied_discount = applied_discount + `${deal.name} ${0 - calculated_discount}\n`;
-    this.total_savings = this.total_savings + calculated_discount;
-    return applied_discount;
+    let discount = Math.floor(quantity / deal.quantity) * deal.discount;
+    output = output + `${deal.name} ${0 - discount}\n`;
+    this.total_savings = this.total_savings + discount;
+    return output;
   }
 
   // Get total price of all items in cart *before deals/discounts*
   sum_cart(cart) {
-    let cart_total = this.contents.reduce(
-    (accumulator, cart_item) => accumulator + this.item_price(cart_item).price, 0);
-    return cart_total;
+    let total = this.contents.reduce(
+    (accumulator, item) => accumulator + this.item_price(item).price, 0);
+    return total;
   }
   
   // Calculate item price from product price and quantity
-  item_price(cart_item) {
-    let unit_price = cart_item.product.price;
-    let quantity = cart_item.quantity;
-    let unit = cart_item.product.unit;
+  item_price(item) {
+    let price = item.product.price;
+    let quantity = item.quantity;
+    let unit = item.product.unit;
 
-    let price = this.pounds_and_pence(unit_price * quantity);
+    let formatted = this.pounds_and_pence(price * quantity);
 
-    let quantity_message = '';
+    let message = '';
     if (unit != 'item') {
-      quantity_message = `${quantity}${unit} @ £${unit_price}/${unit}`;
+      message = `${quantity}${unit} @ £${price}/${unit}`;
     }
-    return {'price': price, 'quantity_message': quantity_message};
+    return {'price': formatted, 'quantity_message': message};
   }
 
   // Rounds to two decimal places at each item/discount, since that is expected
@@ -122,8 +124,8 @@ export class cart {
     // to the penny for each item, which is probably the approach taken 
     // by shops
     
-    let rounded_price = parseFloat(price.toFixed(2)); 
-    return rounded_price;
+    let rounded = parseFloat(price.toFixed(2)); 
+    return rounded;
   }
 
   // Retrieve arguments from CLI invocation
